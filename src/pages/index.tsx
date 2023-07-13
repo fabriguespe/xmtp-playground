@@ -32,12 +32,13 @@ export default function Index() {
       // User-provided code will go here
       ${textareaValue}
     }
+    const defaultValue = "${loggedStrings.join("\\n")}";
+
   
     return (
       <div>
         <button onClick={doSomething}>  ▶️ RUN </button>
-        
-      <textarea className={styles.test} >\`${loggedStrings}\`</textarea>
+        <textarea className={styles.test} defaultValue={defaultValue} />
       </div>
     )
   }
@@ -51,16 +52,37 @@ export default function Index() {
 
   return (
     <div>
-      <textarea
-        value={textareaValue} // set textarea value from state
-        onChange={handleTextareaChange} // update state when textarea value changes
-        className={styles.test} // make the textarea full width
-      />
-      <LiveProvider code={code2} scope={scope} noInline={true}>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
-      </LiveProvider>
+      <div className={styles.container}>
+        <div className={styles.test}>
+          <textarea
+            value={textareaValue} // set textarea value from state
+            onChange={handleTextareaChange} // update state when textarea value changes
+            className={styles.test} // make the textarea full width  <LiveEditor />
+          />
+        </div>
+        <div className={styles.test}>
+          <LiveProvider code={code2} scope={scope} noInline={true}>
+            <LiveError />
+            <LivePreview />
+          </LiveProvider>
+        </div>
+      </div>
+
+      <div className={styles.container}>
+        <div className={styles.test}>
+          <textarea
+            value={textareaValue} // set textarea value from state
+            onChange={handleTextareaChange} // update state when textarea value changes
+            className={styles.test} // make the textarea full width  <LiveEditor />
+          />
+        </div>
+        <div className={styles.test}>
+          <LiveProvider code={code2} scope={scope} noInline={true}>
+            <LiveError />
+            <LivePreview />
+          </LiveProvider>
+        </div>
+      </div>
     </div>
   );
 }
